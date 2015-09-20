@@ -13,35 +13,41 @@ function print(dictionaryTitle, dictionaryDate, dictionaryAmount) {
         amount = dictionaryAmount[title];
         createdAt = dictionaryDate[title];
 
-        $('#donations').append('<li class="disaster-item" > \
-            <a href="#"> \
-              <div class="row"> \
-                <span class="chev-holder"> \
-                  <i class="fa fa-chevron-right"></i> \
-                </span> \
-                <div class="col-md-1 "> \
-                  <span class="number-order">'+index+'</span> \
+
+    $('#donations').append(' \
+    <li class="disaster-item" > \
+        <a href="#"> \
+          <div class="row"> \
+            <span class="chev-holder"> \
+              <i class="fa fa-chevron-right"></i> \
+            </span> \
+            <div class="col-md-1 "> \
+              <span class="number-order">'+index+'</span> \
+            </div> \
+            <div class=" col-md-3 text-center img-holder"> \
+              <img class="disaster-img" src="img/earthquake.png" alt=""> \
+            </div> \
+            <div class="col-md-8" style="padding-left:0;"> \
+              <h2>'+title+'</h2> \
+                <div class="row second-row text-center"> \
+                  <div class="col-md-5"> \
+                    <i class="fa fa-clock-o"></i> '+createdAt+' \
+                  </div> \
+                  <div class="col-md-5 money"> \
+                    <i class="fa fa-usd"></i> \
+                      <span>'+amount+' raised</span> \
+                  </div> \
                 </div> \
-                <div class=" col-md-3 text-center img-holder"> \
-                  <img class="disaster-img" src="http://lorempixel.com/70/70/" alt=""> \
-                </div> \
-                <div class="col-md-8" style="padding-left:0;"> \
-                <h2>'+title+'</h2> \
-      <div class="row"> \
-        <div class="col-md-5"> \
-          <i class="fa fa-clock-o"></i> '+createdAt+' </div> \
-        <div class="col-md-5 money"> \
-        <i class="fa fa-usd"></i> \
-        <span>'+amount+' raised</span> \
-      </div> \
-    </div> \
-    </div> \
               </div> \
-            </a> \
-          </li> ');
-      index += 1;
+            </div> \
+          </a> \
+      </li> \
+        ');
+
+        index += 1;
     }
 }
+
 
 function printData(donation) {
   dictionaryAmt = [];
@@ -95,7 +101,7 @@ function timeSince(date) {
 
 function Donations() {
   this.donation = [];
-  
+
   this.getData = function() {
     Parse.initialize("ahKpQvGXaUQHQ1iCyNGyccBU1hz6UsYIWu1HQcwg", "g15tPzTig1ocoqTPFAiuZvTtYb5iq8QlgOURaZkl");
     var donationsParse = Parse.Object.extend("donations");
@@ -106,28 +112,30 @@ function Donations() {
       donationsData.find({
        success: function(donationCollection) {
 
-        $.each(donationCollection, function(index, donationData) {    
+        $.each(donationCollection, function(index, donationData) {
           var quakes = Parse.Object.extend("quakes");
           var quakesData = new Parse.Query(quakes);
           (function(donation){
             console.log(donationData.get('quake'));
-            quakesData.get(donationData.get('quake'), {       
+            quakesData.get(donationData.get('quake'), {
               success: function(object) {
                 donationElement = new Donation(object.get('place'), timeSince(donationData.createdAt), donationData.get('location'), donationData.get('amount'));
+
                 donation.push(donationElement); 
                 console.log("Lenght"+donation.length);
+
                 if (donation.length == 16) {
                 printData(donation);
               }
-              
-                
+
+
               },
               error: function(object, error) {
               }
 
-            }); 
+            });
 
-          })(donation);         
+          })(donation);
        });
       },
       error: function(error) {
@@ -137,7 +145,7 @@ function Donations() {
   })(this.donation);
 }
 }
-      
+
 var donations = new Donations();
 donations.getData();
 console.log("FINAL END");

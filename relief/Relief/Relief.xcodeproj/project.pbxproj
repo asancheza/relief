@@ -156,6 +156,7 @@
 		1818C7E01BAE13C200564D02 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Julius Danek";
 				TargetAttributes = {
@@ -409,6 +410,7 @@
 				1818C8091BAE13C300564D02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1818C80A1BAE13C300564D02 /* Build configuration list for PBXNativeTarget "ReliefTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +419,7 @@
 				1818C80C1BAE13C300564D02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
