@@ -3,29 +3,17 @@ function Donation(name, createdAt, location, amount) {
   this.createdAt = createdAt;
   this.location = location;
   this.amount = amount;
+}
 
-  this.print = function(index) {
-    /*
-    <li class="disaster-item" >
-            <a href="#">
-              <div class="row">
-                <span class="chev-holder">
-                  <i class="fa fa-chevron-right"></i>
-                </span>
-                <div class="col-md-1 ">
-                  <span class="number-order">1</span>
-                </div>
-                <div class=" col-md-3 text-center img-holder">
-                  <img class="disaster-img" src="http://lorempixel.com/70/70/" alt="">
-                </div>
-                <div class="col-md-8" style="padding-left:0;" id="donations">
-                </div>
-              </div>
-            </a>
-          </li> 
-    */
+function print(dictionaryTitle, dictionaryDate, dictionaryAmount) {
 
-    $('#donations').append('<li class="disaster-item" > \
+    var index = 0;
+    for (var title in dictionaryAmount) {
+        console.log("1"+dictionaryTitle);
+        amount = dictionaryAmount[title];
+        createdAt = dictionaryDate[title];
+
+        $('#donations').append('<li class="disaster-item" > \
             <a href="#"> \
               <div class="row"> \
                 <span class="chev-holder"> \
@@ -38,26 +26,43 @@ function Donation(name, createdAt, location, amount) {
                   <img class="disaster-img" src="http://lorempixel.com/70/70/" alt=""> \
                 </div> \
                 <div class="col-md-8" style="padding-left:0;"> \
-                <h2>'+this.name+'</h2> \
+                <h2>'+title+'</h2> \
       <div class="row"> \
         <div class="col-md-5"> \
-          <i class="fa fa-clock-o"></i> '+this.createdAt+' </div> \
+          <i class="fa fa-clock-o"></i> '+createdAt+' </div> \
         <div class="col-md-5 money"> \
         <i class="fa fa-usd"></i> \
-        <span>'+this.amount+' raised</span> \
+        <span>'+amount+' raised</span> \
       </div> \
     </div> \
     </div> \
               </div> \
             </a> \
           </li> ');
-  }
+      index += 1;
+    }
 }
 
 function printData(donation) {
+  dictionaryAmt = [];
+  dictionaryTitle = [];
+  dictionaryDate = [];
+
+  console.log(donation);
+
   $.each(donation, function(index, donation) {
-    donation.print(index+1);
+    //donation.print(index+1);
+    if (donation.name in dictionaryAmt)
+      dictionaryAmt[donation.name] = dictionaryAmt[donation.name] + donation.amount;
+    else
+      dictionaryAmt[donation.name] = donation.amount;
+    dictionaryDate[donation.name] = donation.createdAt;
+
+    dictionaryTitle[donation.name] = donation.name;   
+
   });
+
+  print(dictionaryTitle, dictionaryDate, dictionaryAmt);
 }
 
 function timeSince(date) {
@@ -110,7 +115,7 @@ function Donations() {
               success: function(object) {
                 donationElement = new Donation(object.get('place'), timeSince(donationData.createdAt), donationData.get('location'), donationData.get('amount'));
                 donation.push(donationElement); 
-console.log("Lenght"+donation.length);
+                console.log("Lenght"+donation.length);
                 if (donation.length == 16) {
                 printData(donation);
               }
