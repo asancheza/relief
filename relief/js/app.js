@@ -4,13 +4,13 @@
 
   require(["esri/map", "esri/geometry/Circle", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol","esri/graphic", "esri/geometry/Point", "esri/Color", "dojo/domReady!"
   ], function (Map, Circle, SimpleFillSymbol, SimpleMarkerSymbol, SimpleLineSymbol, Graphic, Point, Color) {
-      
+
       // parse keys
       Parse.initialize("ahKpQvGXaUQHQ1iCyNGyccBU1hz6UsYIWu1HQcwg", "g15tPzTig1ocoqTPFAiuZvTtYb5iq8QlgOURaZkl");
 
       // add basemap
       map = new Map("map", {
-          basemap: "streets",
+          basemap: "dark-gray",
           center: [-77.036744, 38.897731],
           zoom: 4
       });
@@ -40,6 +40,7 @@
           });
       });
 
+
       function Donation(name, createdAt, location, amount) {
         this.name = name;
         this.createdAt = createdAt;
@@ -67,8 +68,6 @@
       
       function Donations() {
         this.donation = [];
-
-        this.print = 
         
         this.getData = function() {
           Parse.initialize("ahKpQvGXaUQHQ1iCyNGyccBU1hz6UsYIWu1HQcwg", "g15tPzTig1ocoqTPFAiuZvTtYb5iq8QlgOURaZkl");
