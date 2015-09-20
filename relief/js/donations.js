@@ -3,8 +3,15 @@ function Donation(name, createdAt, location, amount) {
   this.createdAt = createdAt;
   this.location = location;
   this.amount = amount;
+}
 
-  this.print = function(index) {
+function print(dictionaryTitle, dictionaryDate, dictionaryAmount) {
+
+    var index = 0;
+    for (var title in dictionaryAmount) {
+        console.log("1"+dictionaryTitle);
+        amount = dictionaryAmount[title];
+        createdAt = dictionaryDate[title];
 
 
     $('#donations').append(' \
@@ -21,14 +28,14 @@ function Donation(name, createdAt, location, amount) {
               <img class="disaster-img" src="img/earthquake.png" alt=""> \
             </div> \
             <div class="col-md-8" style="padding-left:0;"> \
-              <h2>'+this.name+'</h2> \
+              <h2>'+title+'</h2> \
                 <div class="row second-row text-center"> \
                   <div class="col-md-5"> \
-                    <i class="fa fa-clock-o"></i> '+this.createdAt+' \
+                    <i class="fa fa-clock-o"></i> '+createdAt+' \
                   </div> \
                   <div class="col-md-5 money"> \
                     <i class="fa fa-usd"></i> \
-                      <span>'+this.amount+' raised</span> \
+                      <span>'+amount+' raised</span> \
                   </div> \
                 </div> \
               </div> \
@@ -36,13 +43,32 @@ function Donation(name, createdAt, location, amount) {
           </a> \
       </li> \
         ');
-  }
+
+        index += 1;
+    }
 }
 
+
 function printData(donation) {
+  dictionaryAmt = [];
+  dictionaryTitle = [];
+  dictionaryDate = [];
+
+  console.log(donation);
+
   $.each(donation, function(index, donation) {
-    donation.print(index+1);
+    //donation.print(index+1);
+    if (donation.name in dictionaryAmt)
+      dictionaryAmt[donation.name] = dictionaryAmt[donation.name] + donation.amount;
+    else
+      dictionaryAmt[donation.name] = donation.amount;
+    dictionaryDate[donation.name] = donation.createdAt;
+
+    dictionaryTitle[donation.name] = donation.name;   
+
   });
+
+  print(dictionaryTitle, dictionaryDate, dictionaryAmt);
 }
 
 function timeSince(date) {
@@ -94,8 +120,10 @@ function Donations() {
             quakesData.get(donationData.get('quake'), {
               success: function(object) {
                 donationElement = new Donation(object.get('place'), timeSince(donationData.createdAt), donationData.get('location'), donationData.get('amount'));
-                donation.push(donationElement);
-console.log("Lenght"+donation.length);
+
+                donation.push(donationElement); 
+                console.log("Lenght"+donation.length);
+
                 if (donation.length == 16) {
                 printData(donation);
               }
