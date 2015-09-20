@@ -41,10 +41,10 @@ function Donation(name, createdAt, location, amount) {
                 <h2>'+this.name+'</h2> \
       <div class="row"> \
         <div class="col-md-5"> \
-          <i class="fa fa-clock-o"></i> '+this.createdAt+' 4hrs ago</div> \
+          <i class="fa fa-clock-o"></i> '+this.createdAt+' </div> \
         <div class="col-md-5 money"> \
         <i class="fa fa-usd"></i> \
-        <span>'+this.amount+' raised from '+this.location.latitude+','+this.location.longitude+'</span> \
+        <span>'+this.amount+' raised</span> \
       </div> \
     </div> \
     </div> \
@@ -58,6 +58,34 @@ function printData(donation) {
   $.each(donation, function(index, donation) {
     donation.print(index+1);
   });
+}
+
+function timeSince(date) {
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = Math.floor(seconds / 31536000);
+
+    if (interval > 1) {
+        return interval + " years";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+        return interval + " months";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+        return interval + " days";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+        return interval + " hours";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+        return interval + " mins";
+    }
+    return Math.floor(seconds) + " seconds";
 }
 
 function Donations() {
@@ -80,7 +108,7 @@ function Donations() {
             console.log(donationData.get('quake'));
             quakesData.get(donationData.get('quake'), {       
               success: function(object) {
-                donationElement = new Donation(object.get('place'), donationData.createdAt, donationData.get('location'), donationData.get('amount'));
+                donationElement = new Donation(object.get('place'), timeSince(donationData.createdAt), donationData.get('location'), donationData.get('amount'));
                 donation.push(donationElement); 
 console.log("Lenght"+donation.length);
                 if (donation.length == 16) {
