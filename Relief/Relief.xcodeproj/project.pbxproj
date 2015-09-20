@@ -565,7 +565,7 @@
 					"$(SOURCE_ROOT)/Relief/Simplify.framework/Versions/Current/Simplify",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/apple/Documents/Portfolio/iOS/relief/Relief/Relief/Relief-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SOURCE_ROOT)/Relief/Relief-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -588,7 +588,7 @@
 					"$(SOURCE_ROOT)/Relief/Simplify.framework/Versions/Current/Simplify",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/apple/Documents/Portfolio/iOS/relief/Relief/Relief/Relief-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SOURCE_ROOT)/Relief/Relief-Bridging-Header.h";
 			};
 			name = Release;
 		};
