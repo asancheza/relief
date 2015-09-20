@@ -39,8 +39,8 @@ li.disaster-item:hover .chev-holder .fa-chevron-right {
 .disaster-img {
   border-radius: 120px!important;
   margin-top: 15px;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
 }
 .chev-holder .fa-chevron-right {
   font-size: 30px!important;
@@ -72,8 +72,9 @@ li.disaster-item:hover .chev-holder .fa-chevron-right {
   color: rgba(0, 0, 0, .3);
   font-size: 20px
 }
-.dis-name {
-  margin-left: 10px;
+#donations h2 {
+  margin-left: 15px;
+  font-size: 20px;
 }
 .dis-content-row {
   margin-top: 10px;
