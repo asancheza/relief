@@ -113,13 +113,13 @@ function Donations() {
        success: function(donationCollection) {
 
         $.each(donationCollection, function(index, donationData) {
-          var quakes = Parse.Object.extend("quakes");
+          var quakes = Parse.Object.extend("disasters");
           var quakesData = new Parse.Query(quakes);
           (function(donation){
             console.log(donationData.get('quake'));
             quakesData.get(donationData.get('quake'), {
               success: function(object) {
-                donationElement = new Donation(object.get('place'), timeSince(donationData.createdAt), donationData.get('location'), donationData.get('amount'));
+                donationElement = new Donation(object.get('Name'), timeSince(donationData.createdAt), donationData.get('location'), donationData.get('amount'));
 
                 donation.push(donationElement); 
                 console.log("Lenght"+donation.length);
