@@ -1,0 +1,46 @@
+.disaster-unordered-list {
+
+  padding-left: 0;
+}
+
+.map-container {
+
+  height: 90%!important;
+
+}
+
+.map-container #map {
+  height: inherit;
+}
+
+.number-order {
+  color: #ccc;
+  font-size: 40px;
+}
+
+.mod-height {
+  height: 100%;
+  width: 100%;
+}
+
+li.disaster-item {
+  list-style: none;
+  background: #f3f3f3;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 15px 5px;
+}
+
+.disaster-img {
+  border-radius: 120px!important;
+  margin-top: 10px;
+}
+
+.img-holder {
+  padding: 0;
+}
+
+.money  {
+  color: green;
+  font-size: 16px;
+}
