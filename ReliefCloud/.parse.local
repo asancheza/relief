@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "Relief": {
+      "applicationId": "ahKpQvGXaUQHQ1iCyNGyccBU1hz6UsYIWu1HQcwg"
+    },
+    "_default": {
+      "link": "Relief"
+    }
+  }
+}
