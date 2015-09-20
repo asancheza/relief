@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Parse
 
 class ViewController: UIViewController, SIMChargeCardViewControllerDelegate, UITextFieldDelegate {
 
@@ -16,16 +17,23 @@ class ViewController: UIViewController, SIMChargeCardViewControllerDelegate, UIT
     
     @IBOutlet weak var donateButton: UIButton!
     
+    var userLocation: PFGeoPoint?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         donationField.delegate = self
-//        donateButton.enabled = false
+        donateButton.enabled = false
+        
+        PFGeoPoint.geoPointForCurrentLocationInBackground { (geopoint, error) -> Void in
+            self.userLocation = geopoint
+        }
         
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     func chargeCardCancelled() {
+        self.uploadToParse()
         println("card cancelled")
     }
     
@@ -45,6 +53,7 @@ class ViewController: UIViewController, SIMChargeCardViewControllerDelegate, UIT
         self.view.addSubview(indicator)
         Alamofire.request(.POST, url, parameters: params, encoding: .URL, headers: nil).response { (request, response, data, error) -> Void in
             if error == nil {
+                self.uploadToParse()
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     indicator.stopAnimating()
                     indicator.removeFromSuperview()
@@ -55,6 +64,24 @@ class ViewController: UIViewController, SIMChargeCardViewControllerDelegate, UIT
             }
         }
         
+    }
+    
+    func uploadToParse () {
+        let object = PFObject(className: "donations")
+        object.setValue(donationAmount?.integerValue, forKey: "amount")
+        if userLocation != nil {
+            object.setValue(userLocation!, forKey: "location")
+        }
+        object.saveInBackground()
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if donationField.text != "" {
+            donateButton.enabled = true
+        } else {
+            donateButton.enabled = false
+        }
+        return true
     }
     
 //    func textFieldDidBeginEditing(textField: UITextField) {

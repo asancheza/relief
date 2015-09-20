@@ -54,6 +54,7 @@ class TwilioVC: UIViewController {
                     self.phoneNumber.placeholder = "Enter Verification Code"
                     self.continueLogIn.removeTarget(self, action: "submitNumber", forControlEvents: .TouchUpInside)
                     self.continueLogIn.addTarget(self, action: "verifyNumber", forControlEvents: .TouchUpInside)
+                    self.continueLogIn.setTitle("Verify Code", forState: .Normal)
                 })
             }
         }
@@ -61,17 +62,22 @@ class TwilioVC: UIViewController {
     
     func verifyNumber () {
         if phoneNumber.text == verificationCode {
-            var newUser = PFUser()
-            newUser.username = userPhoneNumber!
-            newUser.password = "password"
-            newUser.signUpInBackgroundWithBlock({ (success, error) -> Void in
-                if success {
+            PFUser.logInWithUsernameInBackground(userPhoneNumber!, password: "password", block: { (user, error) -> Void in
+                if error != nil {
+                    var newUser = PFUser()
+                    newUser.username = self.userPhoneNumber!
+                    newUser.password = "password"
+                    newUser.signUpInBackgroundWithBlock({ (success, error) -> Void in
+                        if success {
+                            let feed = self.storyboard?.instantiateViewControllerWithIdentifier("DisasterFeedVC") as! DisasterFeedVC
+                            let navControl = UINavigationController(rootViewController: feed)
+                            self.presentViewController(navControl, animated: true, completion: nil)
+                        }
+                    })
+                } else {
                     let feed = self.storyboard?.instantiateViewControllerWithIdentifier("DisasterFeedVC") as! DisasterFeedVC
-                    
-                    self.presentViewController(feed, animated: true, completion: nil)
-//                    let chargeVC = SIMChargeCardViewController(publicKey: "sbpb_ZjMyMTI0MGItMDc4YS00MDdiLWI0MmQtMWMyNWNlZGYzNGZj")
-//                    
-//                    self.presentViewController(chargeVC, animated: true, completion: nil)
+                    let navControl = UINavigationController(rootViewController: feed)
+                    self.presentViewController(navControl, animated: true, completion: nil)
                 }
             })
         }

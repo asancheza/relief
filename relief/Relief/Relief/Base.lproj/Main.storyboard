@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xl2-IW-5TB">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--TwilioVC-->
@@ -45,7 +46,7 @@
             </objects>
             <point key="canvasLocation" x="-611" y="573"/>
         </scene>
-        <!--Disaster FeedVC-->
+        <!--Disaster Relief-->
         <scene sceneID="YEt-pG-nVa">
             <objects>
                 <tableViewController storyboardIdentifier="DisasterFeedVC" id="AWw-Vx-tc0" customClass="DisasterFeedVC" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
@@ -60,7 +61,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="showDetail" identifier="showDetail" id="NtG-MB-VcA"/>
+                                    <segue destination="ElJ-g1-sbL" kind="show" identifier="showDetail" id="4Sa-uY-oa4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -69,11 +70,117 @@
                             <outlet property="delegate" destination="AWw-Vx-tc0" id="EIG-Cf-CUQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="EiI-xA-SXr"/>
+                    <navigationItem key="navigationItem" title="Disaster Relief" id="EiI-xA-SXr"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GwT-rd-tAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="863" y="573"/>
+        </scene>
+        <!--DetailVC-->
+        <scene sceneID="whV-n1-Lgf">
+            <objects>
+                <viewController id="ElJ-g1-sbL" customClass="DetailVC" customModule="Relief" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uB8-t7-Kbr"/>
+                        <viewControllerLayoutGuide type="bottom" id="eKF-s4-UXa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IfF-ZW-LuH">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="k4i-sk-yYY">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcm-A7-ynb">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="donateButton:" destination="ElJ-g1-sbL" eventType="touchUpInside" id="xf6-vQ-K0i"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1d6-Xu-mcb">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="198" id="tK4-EA-zuQ"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="tK4-EA-zuQ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="tK4-EA-zuQ"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pcm-A7-ynb" firstAttribute="top" secondItem="1d6-Xu-mcb" secondAttribute="bottom" constant="8" symbolic="YES" id="4I2-nq-FkV"/>
+                            <constraint firstItem="1d6-Xu-mcb" firstAttribute="centerX" secondItem="Pcm-A7-ynb" secondAttribute="centerX" id="LfQ-ZI-6NN"/>
+                            <constraint firstItem="k4i-sk-yYY" firstAttribute="trailing" secondItem="1d6-Xu-mcb" secondAttribute="trailing" id="M5j-hQ-Ju4"/>
+                            <constraint firstItem="Pcm-A7-ynb" firstAttribute="leading" secondItem="IfF-ZW-LuH" secondAttribute="leadingMargin" constant="38" id="WGd-8A-uUU"/>
+                            <constraint firstItem="k4i-sk-yYY" firstAttribute="leading" secondItem="IfF-ZW-LuH" secondAttribute="leading" id="WsV-2f-vOn"/>
+                            <constraint firstItem="k4i-sk-yYY" firstAttribute="top" secondItem="IfF-ZW-LuH" secondAttribute="top" constant="20" symbolic="YES" id="f71-Dw-8mF"/>
+                            <constraint firstItem="k4i-sk-yYY" firstAttribute="leading" secondItem="1d6-Xu-mcb" secondAttribute="leading" id="lWJ-7i-2Uz"/>
+                            <constraint firstItem="eKF-s4-UXa" firstAttribute="top" secondItem="Pcm-A7-ynb" secondAttribute="bottom" constant="8" symbolic="YES" id="qio-ap-xRg"/>
+                            <constraint firstAttribute="trailing" secondItem="k4i-sk-yYY" secondAttribute="trailing" id="tpa-qr-5hL"/>
+                            <constraint firstItem="1d6-Xu-mcb" firstAttribute="top" secondItem="k4i-sk-yYY" secondAttribute="bottom" constant="8" symbolic="YES" id="zJC-35-UKG"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="k4i-sk-yYY"/>
+                                <exclude reference="Pcm-A7-ynb"/>
+                                <exclude reference="1d6-Xu-mcb"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="M5j-hQ-Ju4"/>
+                                <exclude reference="WsV-2f-vOn"/>
+                                <exclude reference="f71-Dw-8mF"/>
+                                <exclude reference="lWJ-7i-2Uz"/>
+                                <exclude reference="tpa-qr-5hL"/>
+                                <exclude reference="LfQ-ZI-6NN"/>
+                                <exclude reference="zJC-35-UKG"/>
+                                <exclude reference="4I2-nq-FkV"/>
+                                <exclude reference="WGd-8A-uUU"/>
+                                <exclude reference="qio-ap-xRg"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="k4i-sk-yYY"/>
+                                <include reference="Pcm-A7-ynb"/>
+                                <include reference="1d6-Xu-mcb"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="M5j-hQ-Ju4"/>
+                                <include reference="WsV-2f-vOn"/>
+                                <include reference="f71-Dw-8mF"/>
+                                <include reference="lWJ-7i-2Uz"/>
+                                <include reference="tpa-qr-5hL"/>
+                                <include reference="LfQ-ZI-6NN"/>
+                                <include reference="zJC-35-UKG"/>
+                                <include reference="4I2-nq-FkV"/>
+                                <include reference="WGd-8A-uUU"/>
+                                <include reference="qio-ap-xRg"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="k4i-sk-yYY" id="0LC-PA-N6b"/>
+                        <outlet property="textField" destination="1d6-Xu-mcb" id="fuO-6C-Yqa"/>
+                        <segue destination="vXZ-lx-hvc" kind="presentation" identifier="showDonation" id="Pqz-VJ-2GC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qle-3C-tYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1636.5" y="573"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
@@ -99,7 +206,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Donation Amount" minimumFontSize="40" translatesAutoresizingMaskIntoConstraints="NO" id="Xk7-cY-aaf">
                                 <rect key="frame" x="252" y="97" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -131,10 +238,10 @@
             </objects>
             <point key="canvasLocation" x="660" y="-163"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Disaster Relief-->
         <scene sceneID="uWN-su-Hg4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dav-7h-ky7" sceneMemberID="viewController">
+                <navigationController title="Disaster Relief" automaticallyAdjustsScrollViewInsets="NO" id="dav-7h-ky7" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Lqi-TQ-Ack">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -150,4 +257,7 @@
             <point key="canvasLocation" x="51" y="573"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="button" width="303" height="64"/>
+    </resources>
 </document>
