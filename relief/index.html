@@ -32,26 +32,29 @@
             map = new Map("map", {
                 basemap: "streets",
                 center: [-77.036744, 38.897731],
-                zoom: 12
+                zoom: 4
             });
 
             // on map load
             map.on("load", function () {
 
                 // grab all quakes
-                var Quakes = Parse.Object.extend("Quakes");
+                var Quakes = Parse.Object.extend("quakes");
                 var query = new Parse.Query(Quakes);
                 query.descending("createdAt");
-                query.limit(1000);
+                query.greaterThan("mag", 6.0);
+                query.limit(100);
                 query.find({
                   success: function(objects) {
-                        
+                    
+                   console.log(objects);
+                   
                    // loop thru all quakes
                    $.each(objects, function(index, quake) {
-                        var symbolPoint = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, map.width/100*quake.get('magnitude'),
-                                          new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([0, 0, 255]), 1),
-                                          new Color([0, 0, 255, 0.25]));
-                        var point = new Point([quake.get('center')._longitude, quake.get('center')._latitude]);
+                        var symbolPoint = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, Math.pow(quake.get('mag'), 10) / 10000000,
+                                          new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID, new Color([255, 0, 0]), 1),
+                                          new Color([255, 0, 0, 0.25]) );
+                        var point = new Point([quake.get('longitude'), quake.get('latitude')]);
                         var pointGraphic = new Graphic(point, symbolPoint);
                         map.graphics.add(pointGraphic);
                    });
