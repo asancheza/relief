@@ -95,8 +95,36 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+     html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'News Cycle', sans-serif;
+        font-size: 0.90em;
+    }
 
+    #map {
+        height: 100%;
+        width: 100%;
+    }
 
+    #controls {
+        background: #fff;
+        box-shadow: 0 6px 6px -6px #999;
+        color: #444;
+        font-family: sans-serif;
+        height: auto;
+        left: 1em;
+        padding: 1em;
+        position: absolute;
+        top: 1em;
+        width: auto;
+        z-index: 40;
+      }
+      #controls div {
+        padding: 0 0 1em 0;
+      }
 
 
 
