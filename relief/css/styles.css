@@ -8,6 +8,7 @@ body {
   position: relative;
   height: 800px;
   overflow-y: scroll;
+  overflow-x: hidden;
 
   -webkit-animation: fadeInDown 2s;
   animation:  fadeInDown 2s;
@@ -19,7 +20,7 @@ body {
   color: #000!important;
   font-size: 30px;
   margin-top: 20px!important;
-  margin-left: 5px;
+  margin-left: 10px;
   display: block;
   opacity: .4;
 }
