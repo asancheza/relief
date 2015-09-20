@@ -67,7 +67,7 @@ function Donations() {
     Parse.initialize("ahKpQvGXaUQHQ1iCyNGyccBU1hz6UsYIWu1HQcwg", "g15tPzTig1ocoqTPFAiuZvTtYb5iq8QlgOURaZkl");
     var donationsParse = Parse.Object.extend("donations");
     var donationsData = new Parse.Query(donationsParse);
-    donationsData.limit(10);
+    donationsData.limit(100);
 
     (function(donation){
       donationsData.find({
@@ -82,8 +82,8 @@ function Donations() {
               success: function(object) {
                 donationElement = new Donation(object.get('place'), donationData.createdAt, donationData.get('location'), donationData.get('amount'));
                 donation.push(donationElement); 
-
-                if (donation.length == 2) {
+console.log("Lenght"+donation.length);
+                if (donation.length == 16) {
                 printData(donation);
               }
               
