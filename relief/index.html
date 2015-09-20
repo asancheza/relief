@@ -6,6 +6,7 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>Relief</title>
   <link rel="stylesheet" href="http://js.arcgis.com/3.14/esri/css/esri.css">
+  <link rel="stylesheet" href="css/animate.css" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -19,23 +20,15 @@
 
 <body>
   <div class="container-full mod-height">
+    <span class="logo-holder">
+      <img class="logo-img" src="img/logo-2.png" alt="">
+    </span>
     <div class="row">
-      <div class="col-sm-3 hidden-sm hidden-xs" style="padding-right:0;">
-        <li class="filter-by">
-          <p class="text-center">Filter by</p>
-          <select class="text-center">
-            <option value="recent">Recent</option>
-            <option value="popular">Most Popular</option>
-          </select>
-        </li>
-          
+      <div class="col-sm-4 hidden-sm hidden-xs" style="padding-right:0;">
         <ul class="disaster-unordered-list" id="donations">
         </ul>
       </div>
-      <div class="col-sm-9 map-container" style="padding-left:0;">
-        <span class="logo-holder">
-          <img class="logo-img" src="img/logo.png" alt="">
-        </span>
+      <div class="col-sm-8 map-container" style="padding-left:0;">
 
         <div id="map"></div>
       </div>

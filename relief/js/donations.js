@@ -18,24 +18,21 @@ function print(dictionaryTitle, dictionaryDate, dictionaryAmount) {
     <li class="disaster-item" > \
         <a href="#"> \
           <div class="row"> \
-            <span class="chev-holder"> \
-              <i class="fa fa-chevron-right"></i> \
-            </span> \
             <div class="col-md-1 "> \
               <span class="number-order">'+index+'</span> \
             </div> \
             <div class=" col-md-3 text-center img-holder"> \
               <img class="disaster-img" src="img/earthquake.png" alt=""> \
             </div> \
-            <div class="col-md-7" style="padding-left:0;"> \
+            <div class="col-md-8" style="padding-left:0;"> \
               <h2>'+title+'</h2> \
-                <div class="row second-row text-center"> \
-                  <div class="col-md-5"> \
+                <div class="row second-row text-left"> \
+                  <div class="col-md-5 recent-time"> \
                     <i class="fa fa-clock-o"></i> '+createdAt+' \
                   </div> \
                   <div class="col-md-5 money"> \
                     <i class="fa fa-usd"></i> \
-                      <span>'+amount+' raised</span> \
+                      <span >'+amount+'</span> \
                   </div> \
                 </div> \
               </div> \
