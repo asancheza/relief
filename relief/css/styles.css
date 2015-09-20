@@ -7,6 +7,8 @@ body {
 .disaster-unordered-list {
   padding-left: 0;
   position: relative;
+  height: 800px;
+  overflow-y: scroll;
 }
 .map-container {
   height: 1400px!important;
@@ -17,6 +19,7 @@ body {
   margin-top: 5px!important;
   margin-left: 5px;
   display: block;
+  opacity: .3;
 }
 .mod-height {
   height: 100%;
@@ -39,8 +42,9 @@ li.disaster-item:hover .chev-holder .fa-chevron-right {
 .disaster-img {
   border-radius: 120px!important;
   margin-top: 15px;
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
+  border: 2px solid #ccc;
 }
 .chev-holder .fa-chevron-right {
   font-size: 30px!important;
@@ -58,12 +62,12 @@ li.disaster-item:hover .chev-holder .fa-chevron-right {
 }
 .money {
   color: #3fae45;
-  font-size: 25px;
+  font-size: 15px;
   padding: 0;
   padding-left: 0;
 }
 .money span {
-  font-size: 27px;
+  font-size: 15px;
   font-weight: 500;
 }
 .recent-time {
@@ -74,11 +78,19 @@ li.disaster-item:hover .chev-holder .fa-chevron-right {
 }
 #donations h2 {
   margin-left: 15px;
-  font-size: 20px;
+  font-size: 18px!important;
+}
+
+.disaster-item h2 {
+  font-size: 10px!important;
 }
 .dis-content-row {
   margin-top: 10px;
   margin-left: 10px;
+}
+.second-row div {
+  padding-right: 0;
+  padding-left: 0;
 }
 li.filter-by p {
   font-size: 25px;
