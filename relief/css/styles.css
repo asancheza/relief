@@ -11,7 +11,7 @@ body {
   overflow-y: scroll;
 }
 .map-container {
-  height: 1400px!important;
+  height: 800px!important;
 }
 .number-order {
   color: #aaa;
