@@ -5,15 +5,52 @@ function Donation(name, createdAt, location, amount) {
   this.amount = amount;
 
   this.print = function() {
-    $('#donations').append('<h2>'+this.name+'</h2> \
+    /*
+    <li class="disaster-item" >
+            <a href="#">
+              <div class="row">
+                <span class="chev-holder">
+                  <i class="fa fa-chevron-right"></i>
+                </span>
+                <div class="col-md-1 ">
+                  <span class="number-order">1</span>
+                </div>
+                <div class=" col-md-3 text-center img-holder">
+                  <img class="disaster-img" src="http://lorempixel.com/70/70/" alt="">
+                </div>
+                <div class="col-md-8" style="padding-left:0;" id="donations">
+                </div>
+              </div>
+            </a>
+          </li> 
+    */
+
+    $('#donations').append('<li class="disaster-item" > \
+            <a href="#"> \
+              <div class="row"> \
+                <span class="chev-holder"> \
+                  <i class="fa fa-chevron-right"></i> \
+                </span> \
+                <div class="col-md-1 "> \
+                  <span class="number-order">1</span> \
+                </div> \
+                <div class=" col-md-3 text-center img-holder"> \
+                  <img class="disaster-img" src="http://lorempixel.com/70/70/" alt=""> \
+                </div> \
+                <div class="col-md-8" style="padding-left:0;"> \
+                <h2>'+this.name+'</h2> \
       <div class="row"> \
         <div class="col-md-5"> \
           <i class="fa fa-clock-o"></i> '+this.createdAt+' 4hrs ago</div> \
         <div class="col-md-5 money"> \
         <i class="fa fa-usd"></i> \
-        <span>$'+this.amount+' raised from '+this.location.latitude+','+this.location.longitude+'</span> \
+        <span>'+this.amount+' raised from '+this.location.latitude+','+this.location.longitude+'</span> \
       </div> \
-    </div>');
+    </div> \
+    </div> \
+              </div> \
+            </a> \
+          </li> ');
   }
 }
 
