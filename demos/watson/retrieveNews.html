@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Watson demo</title>
+</head>
+<body>
+<div id="content">
+</div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script>
+	$( document ).ready(function() {
+		var apiKey = "85e62ad889b1b15314bb96cf6387592215231fc5";
+
+		function News(title, url, text) {
+			this.title = title;
+			this.url = url;
+			this.text = text;
+		}
+
+		function NewsCollection() {
+			this.newsCollection = [];
+
+			this.search = function(apikey, keyword1, keyword2) {
+				this.earthquakeUrl = "https://gateway-a.watsonplatform.net/calls/data/GetNews?apikey="+apiKey+"&outputMode=json&start=now-1d&end=now&maxResults=10&q.enriched.url.cleanedTitle="+keyword1+"&q.enriched.url.cleanedTitle="+keyword2+"&return=enriched.url.title,enriched.url.text,enriched.url.url";
+
+				$.getJSON(this.earthquakeUrl, function(data) {
+					
+					$.each(data.result.docs, function(i, item) {  
+						var news = new News(item.source.enriched.url.title, item.source.enriched.url.url, item.source.enriched.url.text);
+						this.newsCollection.push(news);
+					}.bind(this));
+					this.print();
+				}.bind(this));
+			}
+
+			this.print = function() {
+				$('#content').append("<h1>Related News</h1>");
+				this.newsCollection.forEach(function(item) {
+					$('#content').append("<h3>"+item.title+"</h3>");
+					$('#content').append("<p>"+item.text+"</p>");
+					$('#content').append("<a href="+item.url+">"+item.url+"</a>");
+				});
+			}
+		}
+
+		var newsCollection = new NewsCollection();
+		$.when(newsCollection.search(apiKey, "earthquake", "chile")).done(function() {
+			//newsCollection.print();
+		});
+	});
+	</script>
+</body>
+</html>
