@@ -4,7 +4,7 @@ function Donation(name, createdAt, location, amount) {
   this.location = location;
   this.amount = amount;
 
-  this.print = function() {
+  this.print = function(index) {
     /*
     <li class="disaster-item" >
             <a href="#">
@@ -32,7 +32,7 @@ function Donation(name, createdAt, location, amount) {
                   <i class="fa fa-chevron-right"></i> \
                 </span> \
                 <div class="col-md-1 "> \
-                  <span class="number-order">1</span> \
+                  <span class="number-order">'+index+'</span> \
                 </div> \
                 <div class=" col-md-3 text-center img-holder"> \
                   <img class="disaster-img" src="http://lorempixel.com/70/70/" alt=""> \
@@ -56,7 +56,7 @@ function Donation(name, createdAt, location, amount) {
 
 function printData(donation) {
   $.each(donation, function(index, donation) {
-    donation.print();
+    donation.print(index+1);
   });
 }
 
