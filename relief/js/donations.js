@@ -27,7 +27,7 @@ function print(dictionaryTitle, dictionaryDate, dictionaryAmount) {
             <div class=" col-md-3 text-center img-holder"> \
               <img class="disaster-img" src="img/earthquake.png" alt=""> \
             </div> \
-            <div class="col-md-8" style="padding-left:0;"> \
+            <div class="col-md-7" style="padding-left:0;"> \
               <h2>'+title+'</h2> \
                 <div class="row second-row text-center"> \
                   <div class="col-md-5"> \
@@ -64,7 +64,7 @@ function printData(donation) {
       dictionaryAmt[donation.name] = donation.amount;
     dictionaryDate[donation.name] = donation.createdAt;
 
-    dictionaryTitle[donation.name] = donation.name;   
+    dictionaryTitle[donation.name] = donation.name;
 
   });
 
@@ -121,7 +121,7 @@ function Donations() {
               success: function(object) {
                 donationElement = new Donation(object.get('Name'), timeSince(donationData.createdAt), donationData.get('location'), donationData.get('amount'));
 
-                donation.push(donationElement); 
+                donation.push(donationElement);
                 console.log("Lenght"+donation.length);
 
                 if (donation.length == 16) {
